@@ -1,4 +1,4 @@
-from users.pom.signup_pom import SignupPage
+from authentication.pom.signup_pom import SignupPage
 
 
 class LoginPage:

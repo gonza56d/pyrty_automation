@@ -2,8 +2,8 @@ import unittest
 from pyunitreport import HTMLTestRunner
 
 from selenium.common.exceptions import NoSuchElementException
-from users.pom import LoginPage
-from users.tests import BaseTest
+from authentication.pom import LoginPage
+from authentication.tests import BaseTest
 from utils.randoms import Random
 
 
@@ -38,6 +38,7 @@ class AuthenticationTest(BaseTest):
             self.assertTrue(signup_page.account_registered_displayed)
         except NoSuchElementException:
             self.test_signup()
+
 
 if __name__ == '__main__':
     unittest.main(testRunner=HTMLTestRunner(output='reports', report_name='login'))
