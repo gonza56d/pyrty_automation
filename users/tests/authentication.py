@@ -1,11 +1,13 @@
 import unittest
-
 from pyunitreport import HTMLTestRunner
-from users.pom.login_pom import LoginPage
-from users.pom.base_test import BaseTest
+
+from selenium.common.exceptions import NoSuchElementException
+from users.pom import LoginPage
+from users.tests import BaseTest
+from utils.randoms import Random
 
 
-class LoginTest(BaseTest):
+class AuthenticationTest(BaseTest):
 
     def test_fake_login(self):
         login_page = LoginPage(self.driver)
@@ -31,9 +33,11 @@ class LoginTest(BaseTest):
         login_page = LoginPage(self.driver)
         login_page.open()
         signup_page = login_page.get_signup()
-        signup_page.signup('availableusername123', 'availableemail123@email.com', 'supersafepass')
-        self.assertTrue(signup_page.account_registered_displayed)
-
+        signup_page.signup(Random.get_username(), Random.get_email(), Random.get_password())
+        try:
+            self.assertTrue(signup_page.account_registered_displayed)
+        except NoSuchElementException:
+            self.test_signup()
 
 if __name__ == '__main__':
     unittest.main(testRunner=HTMLTestRunner(output='reports', report_name='login'))
