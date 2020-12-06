@@ -1,4 +1,4 @@
-from users.pom import SignupPage
+from users.pom.signup_pom import SignupPage
 
 
 class LoginPage:
@@ -12,11 +12,11 @@ class LoginPage:
 
     @property
     def username_field(self):
-        return self.driver.find_element_by_id('id_username')
+        return self.driver.find_element_by_id('id_login-username')
 
     @property
     def password_field(self):
-        return self.driver.find_element_by_id('id_password')
+        return self.driver.find_element_by_id('id_login-password')
 
     @property
     def login_button(self):
@@ -34,8 +34,14 @@ class LoginPage:
         self.login_button.click()
 
     def get_signup(self):
-        self.signup_button.click()
-        return SignupPage()
+        # try to log out in case session is active
+        try:
+            self.driver.find_element_by_xpath(
+                "//i[contains(@class, 'fa-door-open')]/parent::button"
+            ).click()
+        finally:
+            self.signup_button.click()
+            return SignupPage(self.driver)
 
     @property
     def wrong_password_displayed(self):

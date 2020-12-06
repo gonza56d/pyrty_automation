@@ -19,11 +19,20 @@ class LoginTest(BaseTest):
         login_page.login('gonza56d', 'abc123abc123')
         self.assertTrue(login_page.login_success_displayed)
 
+    def test_fake_signup(self):
+        login_page = LoginPage(self.driver)
+        login_page.open()
+        signup_page = login_page.get_signup()
+        signup_page.signup('demo', 'demo@demo.com', 'demodemo')
+        self.assertTrue(signup_page.username_taken_displayed)
+        self.assertTrue(signup_page.email_taken_displayed)
+
     def test_signup(self):
         login_page = LoginPage(self.driver)
         login_page.open()
         signup_page = login_page.get_signup()
-        # TODO test the sign up
+        signup_page.signup('availableusername123', 'availableemail123@email.com', 'supersafepass')
+        self.assertTrue(signup_page.account_registered_displayed)
 
 
 if __name__ == '__main__':
