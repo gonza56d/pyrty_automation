@@ -4,7 +4,7 @@ class SignupPage:
 
     def __init__(self, driver):
         self.driver = driver
-        self.url = config.ip
+        self.url = config.url
 
     def open(self):
         self.driver.get(self.url)

@@ -11,7 +11,7 @@ class BaseTest(unittest.TestCase):
     def setUpClass(cls):
         cls.driver = webdriver.Chrome(executable_path=config.executable)
         cls.driver.maximize_window()
-        cls.driver.get(config.ip)
+        cls.driver.get(config.url)
 
     @classmethod
     def tearDownClass(cls):
