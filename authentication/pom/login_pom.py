@@ -1,11 +1,12 @@
 from authentication.pom.signup_pom import SignupPage
+import config
 
 
 class LoginPage:
     
     def __init__(self, driver):
         self.driver = driver
-        self.url = 'localhost:8000'
+        self.url = config.ip
 
     def open(self):
         self.driver.get(self.url)

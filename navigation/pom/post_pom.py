@@ -3,7 +3,7 @@ class PostPage:
 
     def __init__(self, driver, post_id):
         self.driver = driver
-        self.url = f'http://localhost:8000/posts/{post_id}'
+        # self.url = f'http://localhost:8000/posts/{post_id}'
 
     def open(self):
         self.driver.get(self.url)
